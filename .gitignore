@@ -163,3 +163,5 @@ pip-log.txt
 .DS_Store
 
 /atk4
+/doc
+/config-default.php
