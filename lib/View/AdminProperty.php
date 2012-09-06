@@ -1,16 +1,17 @@
 <?php
+/**
+ * An admin can manage a property of a selected user with this view.
+ */
 class View_AdminProperty extends View {
-    
-
     function init(){
         parent::init();
 
         $form=$this->add('Form');
 		$field=$form->addField('dropdown', 'user_id', 'User');
+		$field->setAttr('size', 5);
 		$field->setModel('User');
-		$field->setEmptyText('Select ...')
+		$field->setEmptyText('Bitte wählen ...')
 			  ->js('change', $form->js()->submit());
-		
 		
 		$propModel=$this->add('Model_Property');
 		$propCrud=null;

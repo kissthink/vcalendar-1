@@ -1,4 +1,7 @@
 <?php
+/**
+ * Admin can manage the users on this page. One admin can manage all admins.
+ */
 class page_admin extends Page {
     function init(){
         parent::init();
@@ -17,6 +20,5 @@ class page_admin extends Page {
 		// Tab Admins
 		$tab=$tabs->addTab('Admins');
         $tab->add('CRUD')->setModel('User_Admin');
-		
     }
 }
