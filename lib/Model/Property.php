@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * An user has one or many properties. A property is a flat or a house.
  */

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * An admin can manage users and the properties of an user.
  */

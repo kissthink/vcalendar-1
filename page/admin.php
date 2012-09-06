@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Admin can manage the users on this page. One admin can manage all admins.
  */

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * An user can have properties and can manage his properties.
  */
