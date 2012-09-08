@@ -9,14 +9,23 @@ class Model_User extends Model_Table {
         parent::init();
         
 		// fields
-		$this->addField('first_name')->caption('Vorname')->mandatory('Vorname ist ein Pflichtfeld');
-		$this->addField('last_name')->caption('Name')->mandatory('Name ist ein Pflichtfeld');
-        $this->addField('email')->caption('E-Mail')->mandatory('E-Mail ist ein Pflichtfeld');
-		$this->addField('password')->caption('Passwort')->mandatory(true);
-        $this->addField('is_admin')->type('boolean').system(true);
+		$this->addField('first_name')
+				->caption('Vorname')
+				->mandatory('Vorname ist ein Pflichtfeld');
+		$this->addField('last_name')
+				->caption('Name')
+				->mandatory('Name ist ein Pflichtfeld');
+        $this->addField('email')
+				->caption('E-Mail')
+				->mandatory('E-Mail ist ein Pflichtfeld');
+		$this->addField('password')
+				->caption('Passwort')
+				->mandatory(true);
+        $this->addField('is_admin')
+				->type('boolean');
 		
 		// expressions
-		$this->addExpression('name', 'concat(first_name,\' \',last_name)')->caption('User');
+		$this->addExpression('name', 'concat(first_name,\' \',last_name)')->caption('User')->visible(false);
 		
 		// relations
 		$this->hasMany('Property');
