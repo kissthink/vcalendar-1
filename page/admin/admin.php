@@ -7,7 +7,7 @@ class page_admin_admin extends Page {
         parent::init();
         $page = $this;
 
-		// Tab Admins
+		$page->add('H1')->set('Administratoren verwalten');
         $page->add('CRUD')->setModel('User_Admin');
     }
 }

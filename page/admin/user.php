@@ -7,6 +7,7 @@ class page_admin_user extends Page {
         parent::init();
         $page = $this;
 		
+		$page->add('H1')->set('Benutzer verwalten');
         $page->add('CRUD')->setModel('User');
     }
 }

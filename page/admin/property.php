@@ -7,6 +7,7 @@ class page_admin_property extends Page {
         parent::init();
         $page = $this;
 		
+		$page->add('H1')->set('Objekte verwalten');
         $page->add('View_Admin_Property');
     }
 }
