@@ -2,16 +2,19 @@
 /**
  * An admin can manage a property of a selected user with this view.
  */
-class View_AdminProperty extends View {
+class View_Admin_Property extends View {
     function init(){
         parent::init();
 
-        $form = $this->add('Form');
+		$cols = $this->add('Columns');
+		
+		// use jquery 12col - design 
+        $form = $cols->addColumn(3)->add('Form');
+		$form->addClass('stacked');
 		$field = $form->addField('dropdown', 'user_id', 'User');
 		$field->setAttr('size', 5);
 		$field->setModel('User');
-		$field->setEmptyText('Bitte wählen ...')
-			  ->js('change', $form->js()->submit());
+		$field->js('change', $form->js()->submit());
 		
 		$propModel = $this->add('Model_Property');
 		$propCrud = null;
@@ -24,7 +27,8 @@ class View_AdminProperty extends View {
 			$propModel->setMasterField('user_id', -1);
 		}
 		
-		$propCrud = $this->add('CRUD');
+		// use jquery 12col - design 
+		$propCrud = $cols->addColumn(9)->add('CRUD');
         $propCrud->setModel($propModel);
 		
 		if ($_GET["user_id"]) {
