@@ -2,7 +2,7 @@
 /**
  * Admin can manage all other admins.
  */
-class page_admin_admin extends Page {
+class page_admin extends Page {
     function init(){
         parent::init();
         $page = $this;

@@ -5,7 +5,6 @@ class page_index extends Page {
         $page = $this;
 
         // Adding a View and chaining example
-        $this->add('H1')->set('Welcome to public booking area');
-  
+        $this->add('H1')->set('Welcome to admin page');
     }
 }

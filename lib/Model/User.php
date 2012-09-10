@@ -44,5 +44,9 @@ class Model_User extends Model_Table {
 	function beforeSave(){
 		// make sure that admin flag is set to false
 		$this['is_admin'] = false;
+		
+		if (!filter_var($this['email'], FILTER_VALIDATE_EMAIL)) {
+			throw $this->exception('E-Mail ist ungültig');
+		}
 	}
 }

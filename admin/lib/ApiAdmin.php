@@ -2,7 +2,10 @@
 /**
  * Consult documentation on http://agiletoolkit.org/learn 
  */
-class Frontend extends ApiFrontend {
+class ApiAdmin extends ApiFrontend {
+
+    public $is_admin=true;
+
     function init(){
         parent::init();
         // Keep this if you are going to use database on all pages
@@ -11,15 +14,15 @@ class Frontend extends ApiFrontend {
 
         // This will add some resources from atk4-addons, which would be located
         // in atk4-addons subdirectory.
-		/*
-        $this->addLocation('atk4-addons',array(
+		// Notice: This will add the lib folder of the subdirectory 'admin', too.
+		$this->addLocation('..',array(
                     'php'=>array(
-                        'mvc',
-                        'misc/lib',
+                        'lib',
+                        'atk4-addons/mvc',
+                        'atk4-addons/misc/lib',
                         )
                     ))
             ->setParent($this->pathfinder->base_location);
-        */
 		
         // A lot of the functionality in Agile Toolkit requires jUI
         $this->add('jUI');
@@ -30,17 +33,13 @@ class Frontend extends ApiFrontend {
         // include it here
         $this->js()
             ->_load('atk4_univ')
-            ->_load('ui.atk4_notify')
-            ;
+            ->_load('ui.atk4_notify');
 		
-        // If you wish to restrict actess to your pages, use BasicAuth class
-		/*
-        $this->add('BasicAuth')
-            ->allow('demo','demo')
-            // use check() and allowPage for white-list based auth checking
-            //->check()
-            ;
-        */
+        // Allow user: "admin", with password: "demo" to use this application
+        $auth = $this->add('BasicAuth');
+		$auth->setModel('User_Admin');
+		$auth->check();
+		//->allow('admin','demo')->check();
 			
         // This method is executed for ALL the peages you are going to add,
         // before the page class is loaded. You can put additional checks
@@ -53,32 +52,10 @@ class Frontend extends ApiFrontend {
         // it and place in a separate class
 		
         $this->add('Menu',null,'Menu')
-			->addMenuItem('index','Welcome');
+			->addMenuItem('user','Benutzer')
+			->addMenuItem('admin','Admins')
+			->addMenuItem('property','Objekte');
 
         //$this->addLayout('UserMenu');
-		
     }
-	/*
-    function layout_UserMenu(){
-        if($this->auth->isLoggedIn()){
-            $this->add('Text',null,'UserMenu')
-                ->set('Hello, '.$this->auth->get('username').' | ');
-            $this->add('HtmlElement',null,'UserMenu')
-                ->setElement('a')
-                ->set('Logout')
-                ->setAttr('href',$this->getDestinationURL('logout'))
-                ;
-        }else{
-            $this->add('HtmlElement',null,'UserMenu')
-                ->setElement('a')
-                ->set('Login')
-                ->setAttr('href',$this->getDestinationURL('authtest'))
-                ;
-        }
-    }
-    function page_examples($p){
-        header('Location: '.$this->pm->base_path.'examples');
-        exit;
-    }
-	*/
 }
