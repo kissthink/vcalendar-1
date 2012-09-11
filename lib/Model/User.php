@@ -18,9 +18,11 @@ class Model_User extends Model_Table {
         $this->addField('email')
 				->caption('E-Mail')
 				->mandatory('E-Mail ist ein Pflichtfeld');
+	    /*
 		$this->addField('password')
 				->caption('Passwort')
 				->mandatory(true);
+		*/
         $this->addField('is_admin')
 				->type('boolean');
 		
