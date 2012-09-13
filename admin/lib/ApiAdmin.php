@@ -11,6 +11,9 @@ class ApiAdmin extends ApiFrontend {
         // Keep this if you are going to use database on all pages
         $this->dbConnect();
         $this->requires('atk','4.2.0');
+		
+		$this->add('Logger');
+		$this->debug=true;
 
         // This will add some resources from atk4-addons, which would be located
         // in atk4-addons subdirectory.
@@ -54,7 +57,8 @@ class ApiAdmin extends ApiFrontend {
         $this->add('Menu',null,'Menu')
 			->addMenuItem('user','Benutzer')
 			->addMenuItem('admin','Admins')
-			->addMenuItem('property','Objekte');
+			->addMenuItem('property','Objekte')
+			->addMenuItem('logout', 'Abmelden');
 
         //$this->addLayout('UserMenu');
     }

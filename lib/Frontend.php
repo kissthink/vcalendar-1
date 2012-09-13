@@ -8,10 +8,13 @@ class Frontend extends ApiFrontend {
         // Keep this if you are going to use database on all pages
         $this->dbConnect();
         $this->requires('atk','4.2.0');
+		
+		$this->add('Logger');
+		$this->debug=false;
+		
 
         // This will add some resources from atk4-addons, which would be located
         // in atk4-addons subdirectory.
-		/*
         $this->addLocation('atk4-addons',array(
                     'php'=>array(
                         'mvc',
@@ -19,7 +22,6 @@ class Frontend extends ApiFrontend {
                         )
                     ))
             ->setParent($this->pathfinder->base_location);
-        */
 		
         // A lot of the functionality in Agile Toolkit requires jUI
         $this->add('jUI');
@@ -34,13 +36,7 @@ class Frontend extends ApiFrontend {
             ;
 		
         // If you wish to restrict actess to your pages, use BasicAuth class
-		/*
-        $this->add('BasicAuth')
-            ->allow('demo','demo')
-            // use check() and allowPage for white-list based auth checking
-            //->check()
-            ;
-        */
+		$this->auth=$this->add('UserAuth');
 			
         // This method is executed for ALL the peages you are going to add,
         // before the page class is loaded. You can put additional checks
@@ -51,9 +47,14 @@ class Frontend extends ApiFrontend {
 
         // If you are using a complex menu, you can re-define
         // it and place in a separate class
-		
-        $this->add('Menu',null,'Menu')
-			->addMenuItem('index','Welcome');
+		$menu = $this->add('Menu',null,'Menu');
+        if($this->auth->isLoggedIn()){
+            $menu->addMenuItem('property', 'Objekte');
+            $menu->addMenuItem('account', 'Konto');
+            $menu->addMenuItem('logout', 'Abmelden');
+        }else{
+            $menu->addMenuItem('index', 'Home');
+        }
 
         //$this->addLayout('UserMenu');
 		

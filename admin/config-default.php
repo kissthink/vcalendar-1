@@ -21,3 +21,6 @@ $config['dsn']='mysql://vcalendar:dev@localhost/vcalendar';
 $config['url_postfix']='';
 $config['url_prefix']='?page=';
 $config['auth']['key']='secret';
+
+$config['logger']['log_dir']='P:\atk-projects\logs';
+$config['logger']['log_output']='light';
