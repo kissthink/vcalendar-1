@@ -13,7 +13,7 @@ class ApiAdmin extends ApiFrontend {
         $this->requires('atk','4.2.0');
 		
 		$this->add('Logger');
-		$this->debug=true;
+		$this->debug=false;
 
         // This will add some resources from atk4-addons, which would be located
         // in atk4-addons subdirectory.

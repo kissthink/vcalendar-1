@@ -3,9 +3,21 @@ class page_account extends Page {
     function init(){
         parent::init();
         $this->api->auth->check();
+		$p = $this;
 
-        $model = $this->add('Model_User');
-        $model->getField('email')->system(true);
-        $this->add('FormAndSave')->setModel($model)->loadData($this->api->auth->get('id'));
+        $m = $this->add('Model_User');
+		$m->loadData($p->api->auth->get('id'));
+        $m->getField('email')->system(true);
+		
+		$cols = $p->add('Columns');
+		
+        $f = $cols->addColumn(4)->add('Form');
+		$f->addClass('stacked');
+		$f->setModel($m, array('first_name', 'last_name'));
+		
+		$f->getElement('first_name')->disable();
+		$f->getElement('last_name')->disable();
+		
+		$f->addSubmit();
     }
 }
