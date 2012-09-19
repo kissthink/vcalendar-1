@@ -18,6 +18,24 @@ class page_account extends Page {
 		$f->getElement('first_name')->disable();
 		$f->getElement('last_name')->disable();
 		
+		$f->addField('password', 'password', 'Passwort')->setAttr('maxlength', 30);
+		$f->addField('password', 'password_confirm', 'Passwort bestätigen')->setAttr('maxlength', 30);
+		
 		$f->addSubmit();
+		
+		$f->onSubmit(function($f){
+            if($f->get('password') != $f->get('password_confirm')) {
+				$f->displayError('password_confirm', 'Passwörter stimmen nicht überein');
+			}
+                //throw $f->exception('Passwörter stimmen nicht überein')->setField('password_confirm');
+
+            //$f->set('password',
+            //    $f->api->auth->encryptPassword($form->get('password'),$form->get('email')));
+
+            //$f->update();
+
+            //$f->js()->hide('slow')->univ()->successMessage('Registered successfully')->execute();
+            
+        });
     }
 }
