@@ -2,7 +2,7 @@
 /**
  * An admin can manage a property of a selected user with this view.
  */
-class View_Admin_Property extends View {
+class View_Property extends View {
     function init(){
         parent::init();
 
@@ -31,6 +31,7 @@ class View_Admin_Property extends View {
 		else {
 			$propModel->setMasterField('user_id', -1);
 			$propCrud->grid->destroy();
+			$this->api->stickyForget('user_id');   
 		}
  
         if($form->isSubmitted()) {

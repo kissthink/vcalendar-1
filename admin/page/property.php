@@ -8,6 +8,6 @@ class page_property extends Page {
         $page = $this;
 		
 		$page->add('H1')->set('Objekte verwalten');
-        $page->add('View_Admin_Property');
+        $page->add('View_Property');
     }
 }
